@@ -1,0 +1,334 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #0b0c10;
+    color: #c5c6c7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f2833;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #45a29e;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #66fcf1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li a {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    background-color: #66fcf1;
+    color: #0b0c10;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #c5c6c7;
+    transition: all 0.3s ease;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: url('https://www.spacex.com/static/images/share.jpg') no-repeat center center/cover;
+    color: #a0c4c4;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(11, 12, 16, 0.7);
+    z-index: 0;
+}
+
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem 2rem;
+    background-color: #1f2833;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.feature {
+    background-color: #0b0c10;
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex: 1 1 250px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.feature:hover {
+    transform: scale(1.05);
+    background-color: #45a29e;
+    color: #0b0c10;
+}
+
+.contact {
+    padding: 3rem 2rem;
+    background-color: #1f2833;
+    max-width: 600px;
+    margin: 4rem auto 3rem auto;
+    border-radius: 8px;
+}
+
+.card {
+    background-color: #0b0c10;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: transform 0.6s ease;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    background-color: #45a29e;
+    color: #0b0c10;
+}
+
+.rocket-details-section > .card:hover {
+    transform: none;
+    background-color: #0b0c10;
+    color: white;
+}
+
+.rocket-image {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    border-bottom: 1px solid #45a29e;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 1rem;
+}
+
+.rockets-section > .card:hover {
+    transform: scale(1.05);
+    background-color: #45a29e;
+    color: #0b0c10;
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #66fcf1;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    margin-top: 1rem;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    flex: 1;
+}
+
+#togglePassword {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #45a29e;
+    border: none;
+    border-radius: 4px;
+    color: #0b0c10;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#togglePassword:hover {
+    background-color: #66fcf1;
+}
+
+form button[type="submit"] {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #45a29e;
+    border: none;
+    border-radius: 4px;
+    color: #0b0c10;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #66fcf1;
+}
+
+footer {
+    background-color: #1f2833;
+    text-align: center;
+    padding: 1rem;
+    color: #c5c6c7;
+    margin-top: auto;
+}
+
+.cookie-notification {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #45a29e;
+    color: #0b0c10;
+    text-align: center;
+    padding: 1rem;
+    display: none;
+    z-index: 1000;
+}
+
+.cookie-notification p {
+    margin: 0;
+}
+
+.cookie-notification button {
+    margin-left: 1rem;
+    background-color: #0b0c10;
+    color: #66fcf1;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.cookie-notification button:hover {
+    background-color: #66fcf1;
+    color: #0b0c10;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        right: 0;
+        height: 100vh;
+        top: 0;
+        background-color: #1f2833;
+        flex-direction: column;
+        width: 200px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding-top: 4rem;
+        gap: 1.5rem;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero p {
+        font-size: 1rem;
+    }
+}

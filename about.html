@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpaceX Explorer - About</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">SpaceX Explorer</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="launches.html">Launches</a></li>
+                <li><a href="rockets.html">Rockets</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <h1>About SpaceX</h1>
+            <div id="companyInfo" class="card">Loading company information...</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 SpaceX Explorer. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        async function fetchCompanyInfo() {
+            const container = document.getElementById('companyInfo');
+            try {
+                const response = await fetch('https://api.spacexdata.com/v4/company');
+                const data = await response.json();
+                container.innerHTML = `
+                    <p>${data.summary}</p>
+                    <p>Founder: ${data.founder}</p>
+                    <p>Founded: ${data.founded}</p>
+                    <p>Employees: ${data.employees}</p>
+                    <p>Vehicles: ${data.vehicles}</p>
+                    <p>Launch Sites: ${data.launch_sites}</p>
+                    <p>Test Sites: ${data.test_sites}</p>
+                    <p>CEO: ${data.ceo}</p>
+                    <p>CTO: ${data.cto}</p>
+                    <p>COO: ${data.coo}</p>
+                    <p>Valuation: $${data.valuation.toLocaleString()}</p>
+                `;
+            } catch (error) {
+                container.textContent = 'Failed to load company information.';
+            }
+        }
+        fetchCompanyInfo();
+    </script>
+</body>
+</html>

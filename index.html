@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpaceX Explorer - Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">SpaceX Explorer</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="launches.html">Launches</a></li>
+                <li><a href="rockets.html">Rockets</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to SpaceX Explorer</h1>
+            <p>Discover the latest SpaceX launches, rockets, and company news.</p>
+        </section>
+
+        <section class="features">
+            <a href="launches.html" class="feature">
+                <h2>Latest Launches</h2>
+                <p>Stay updated with the most recent SpaceX missions.</p>
+            </a>
+            <a href="rockets.html" class="feature">
+                <h2>Rockets</h2>
+                <p>Learn about the rockets that make space exploration possible.</p>
+            </a>
+            <a href="about.html" class="feature">
+                <h2>About SpaceX</h2>
+                <p>Get to know the company behind the missions.</p>
+            </a>
+        </section>
+
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <form id="contactForm" novalidate>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" required />
+                    <button type="button" id="togglePassword">Show</button>
+                </div>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 SpaceX Explorer. All rights reserved.</p>
+    </footer>
+
+    <div class="cookie-notification" id="cookieNotification">
+        <p>We use cookies to improve your experience. <button id="acceptCookies">Accept</button></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
