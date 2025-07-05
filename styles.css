@@ -144,6 +144,26 @@ ul {
     border-radius: 8px;
 }
 
+.about-section {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #1f2833;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    color: #c5c6c7;
+    text-align: center;
+    min-height: 80vh;
+    width: 100%;
+}
+
+.about-image {
+    max-width: 60%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
 .card {
     background-color: #0b0c10;
     border-radius: 8px;
