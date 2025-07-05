@@ -6,24 +6,33 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle('toggle');
     });
 
+    document.addEventListener('click', (event) => {
+        if (!burger.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('open')) {
+                navLinks.classList.remove('open');
+                burger.classList.remove('toggle');
+            }
+        }
+    });
+
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        if (localStorage.getItem('contactFormData')) {
-            const savedData = JSON.parse(localStorage.getItem('contactFormData'));
-            contactForm.name.value = savedData.name || '';
-            contactForm.email.value = savedData.email || '';
-            contactForm.message.value = savedData.message || '';
-        }
+        const savedData = JSON.parse(localStorage.getItem('contactFormData') || '{}');
+        contactForm.name.value = savedData.name || '';
+        contactForm.email.value = savedData.email || '';
+        contactForm.message.value = savedData.message || '';
+
+        const saveFormData = () => {
+            const formData = {
+                name: contactForm.name.value.trim(),
+                email: contactForm.email.value.trim(),
+                message: contactForm.message.value.trim()
+            };
+            localStorage.setItem('contactFormData', JSON.stringify(formData));
+        };
 
         ['name', 'email', 'message'].forEach(field => {
-            contactForm[field].addEventListener('input', () => {
-                const formData = {
-                    name: contactForm.name.value.trim(),
-                    email: contactForm.email.value.trim(),
-                    message: contactForm.message.value.trim()
-                };
-                localStorage.setItem('contactFormData', JSON.stringify(formData));
-            });
+            contactForm[field].addEventListener('input', saveFormData);
         });
 
         contactForm.addEventListener('submit', (e) => {
@@ -49,13 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 submittedAt: new Date().toISOString()
             };
 
-            let submissions = JSON.parse(localStorage.getItem('contactFormSubmissions')) || [];
-            submissions = submissions.filter(s => s.email !== submission.email || s.message !== submission.message || s.name !== submission.name);
+            let submissions = JSON.parse(localStorage.getItem('contactFormSubmissions') || '[]');
+            submissions = submissions.filter(s =>
+                s.email !== submission.email ||
+                s.message !== submission.message ||
+                s.name !== submission.name
+            );
             submissions.push(submission);
             localStorage.setItem('contactFormSubmissions', JSON.stringify(submissions));
 
             alert('Form submitted successfully!');
             contactForm.reset();
+            localStorage.removeItem('contactFormData');
         });
     }
 
@@ -78,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cookieNotification.style.display = 'none';
     });
 
-    // Scroll to top button
+
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
     scrollBtn.id = 'scrollToTopBtn';
