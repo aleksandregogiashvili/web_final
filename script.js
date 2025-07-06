@@ -31,102 +31,52 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('contactFormData', JSON.stringify(formData));
         };
 
-        function getErrorElement(field) {
-            let errorElem = field.nextElementSibling;
-            if (!errorElem || !errorElem.classList.contains('error-message')) {
-                errorElem = document.createElement('div');
-                errorElem.classList.add('error-message');
-                errorElem.style.color = 'red';
-                errorElem.style.fontSize = '0.9em';
-                errorElem.style.marginTop = '4px';
-                field.parentNode.insertBefore(errorElem, field.nextSibling);
-            }
-            return errorElem;
-        }
-
         const nameRegex = /^[a-zA-Z\s]{2,50}$/;
         const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         const messageRegex = /^.{10,500}$/;
 
-        function validateName() {
-            const name = contactForm.name.value.trim();
-            const errorElem = getErrorElement(contactForm.name);
-            if (!name) {
-                errorElem.textContent = 'Name is required.';
-                return false;
-            } else if (!nameRegex.test(name)) {
-                errorElem.textContent = 'Name must be 2-50 letters and spaces only.';
-                return false;
-            } else {
-                errorElem.textContent = '';
-                return true;
-            }
-        }
-
-        function validateEmail() {
-            const email = contactForm.email.value.trim();
-            const errorElem = getErrorElement(contactForm.email);
-            if (!email) {
-                errorElem.textContent = 'Email is required.';
-                return false;
-            } else if (!emailRegex.test(email)) {
-                errorElem.textContent = 'Please enter a valid email address.';
-                return false;
-            } else {
-                errorElem.textContent = '';
-                return true;
-            }
-        }
-
-        function validateMessage() {
-            const message = contactForm.message.value.trim();
-            const errorElem = getErrorElement(contactForm.message);
-            if (!message) {
-                errorElem.textContent = 'Message is required.';
-                return false;
-            } else if (!messageRegex.test(message)) {
-                errorElem.textContent = 'Message must be between 10 and 500 characters.';
-                return false;
-            } else {
-                errorElem.textContent = '';
-                return true;
-            }
-        }
-
-        contactForm.name.addEventListener('input', () => {
-            validateName();
-            saveFormData();
-        });
-        contactForm.email.addEventListener('input', () => {
-            validateEmail();
-            saveFormData();
-        });
-        contactForm.message.addEventListener('input', () => {
-            validateMessage();
-            saveFormData();
-        });
-
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const isNameValid = validateName();
-            const isEmailValid = validateEmail();
-            const isMessageValid = validateMessage();
 
-            if (!isNameValid || !isEmailValid || !isMessageValid) {
-                if (!isNameValid) {
-                    contactForm.name.focus();
-                } else if (!isEmailValid) {
-                    contactForm.email.focus();
-                } else {
-                    contactForm.message.focus();
-                }
+            const name = contactForm.name.value.trim();
+            const email = contactForm.email.value.trim();
+            const message = contactForm.message.value.trim();
+
+            if (!name) {
+                alert('Name is required.');
+                contactForm.name.focus();
+                return;
+            }
+            if (!nameRegex.test(name)) {
+                alert('Name must be 2-50 letters and spaces only.');
+                contactForm.name.focus();
+                return;
+            }
+            if (!email) {
+                alert('Email is required.');
+                contactForm.email.focus();
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                contactForm.email.focus();
+                return;
+            }
+            if (!message) {
+                alert('Message is required.');
+                contactForm.message.focus();
+                return;
+            }
+            if (!messageRegex.test(message)) {
+                alert('Message must be between 10 and 500 characters.');
+                contactForm.message.focus();
                 return;
             }
 
             const submission = {
-                name: contactForm.name.value.trim(),
-                email: contactForm.email.value.trim(),
-                message: contactForm.message.value.trim(),
+                name,
+                email,
+                message,
                 submittedAt: new Date().toISOString()
             };
 
