@@ -42,33 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = contactForm.email.value.trim();
             const message = contactForm.message.value.trim();
 
-            if (!name) {
-                alert('Name is required.');
+            if (!name || !nameRegex.test(name)) {
+                alert(!name ? 'Name is required.' : 'Name must be 2-50 letters and spaces only.');
                 contactForm.name.focus();
                 return;
             }
-            if (!nameRegex.test(name)) {
-                alert('Name must be 2-50 letters and spaces only.');
-                contactForm.name.focus();
-                return;
-            }
-            if (!email) {
-                alert('Email is required.');
+            if (!email || !emailRegex.test(email)) {
+                alert(!email ? 'Email is required.' : 'Please enter a valid email address.');
                 contactForm.email.focus();
                 return;
             }
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                contactForm.email.focus();
-                return;
-            }
-            if (!message) {
-                alert('Message is required.');
-                contactForm.message.focus();
-                return;
-            }
-            if (!messageRegex.test(message)) {
-                alert('Message must be between 10 and 500 characters.');
+            if (!message || !messageRegex.test(message)) {
+                alert(!message ? 'Message is required.' : 'Message must be between 10 and 500 characters.');
                 contactForm.message.focus();
                 return;
             }
