@@ -33,7 +33,6 @@
         <h1>SpaceX Launches</h1>
         <div id="launchesContainer" class="launches-container">
           <a href="launch-details.html?id=crew-5" class="card rocket-card">
-            <img src="https://www.spacex.com/static/images/falcon1.jpg" alt="Crew-5 Mission" class="rocket-image" />
             <h2>Crew-5 Mission</h2>
             <p>Click to see detailed information about the Crew-5 mission.</p>
           </a>
@@ -57,7 +56,9 @@
           container.innerHTML = `
                     <a href="launch-details.html?id=crew-5" class="card rocket-card">
                       <h2>${data.name}</h2>
-                      <p>Date: ${new Date(data.date_utc).toLocaleDateString()}</p>
+                      <p>Date: ${new Date(
+                        data.date_utc
+                      ).toLocaleDateString()}</p>
                       <p>Details: ${data.details || "No details available."}</p>
                     </a>
                 `;
