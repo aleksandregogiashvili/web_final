@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
+    const burger = document.querySelector('.burger')
+    const navLinks = document.querySelector('.nav-links')
     burger.addEventListener('click', () => {
         navLinks.classList.toggle('open');
         burger.classList.toggle('toggle');
@@ -43,17 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = contactForm.message.value.trim();
 
             if (!name || !nameRegex.test(name)) {
-                alert(!name ? 'Name is required.' : 'Name must be 2-50 letters and spaces only.');
+                alert(!name ? 'Name is required' : 'Name must be 2-50 letters and spaces only');
                 contactForm.name.focus();
                 return;
             }
-            if (!email || !emailRegex.test(email)) {
-                alert(!email ? 'Email is required.' : 'Please enter a valid email address.');
+            if(!email || !emailRegex.test(email)) {
+                alert(!email ? 'Email is required' : 'Please enter a valid email address.')
                 contactForm.email.focus();
                 return;
             }
-            if (!message || !messageRegex.test(message)) {
-                alert(!message ? 'Message is required.' : 'Message must be between 10 and 500 characters.');
+            if(!message || !messageRegex.test(message)) {
+                alert(!message ? 'Message is required.' : 'Message must be between 10 and 500 characters.')
                 contactForm.message.focus();
                 return;
             }
@@ -66,11 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             let submissions = JSON.parse(localStorage.getItem('contactFormSubmissions') || '[]');
-            submissions = submissions.filter(s =>
+            submissions = submissions.filter(s => 
                 s.email !== submission.email ||
                 s.message !== submission.message ||
                 s.name !== submission.name
             );
+
             submissions.push(submission);
             localStorage.setItem('contactFormSubmissions', JSON.stringify(submissions));
 
@@ -94,11 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('cookiesAccepted')) {
         cookieNotification.style.display = 'block';
     }
-    acceptCookiesBtn.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        cookieNotification.style.display = 'none';
-    });
-
+    if (acceptCookiesBtn) {
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieNotification.style.display = 'none'
+        });
+    }
 
     const scrollBtn = document.createElement('button');
     scrollBtn.textContent = '↑';
@@ -119,13 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
-            scrollBtn.style.display = 'block';
-        } else {
+            scrollBtn.style.display = 'block'
+        }
+        else{
             scrollBtn.style.display = 'none';
         }
     });
 
     scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     });
 });
